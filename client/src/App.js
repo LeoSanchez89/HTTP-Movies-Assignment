@@ -26,24 +26,37 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      <SavedList list={savedList} />
+		<>
+			<SavedList list={savedList} />
 
-      <Route exact path="/">
-        <MovieList movies={movieList} />
-      </Route>
+			<Route exact path="/">
+				<MovieList movies={movieList} />
+			</Route>
 
-      {/* <Route path="/movies/:id">
-        <Movie addToSavedList={addToSavedList} />
-      </Route> */}
-      <Route path="/movies/:id" render={props => <Movie {...props} addToSavedList={addToSavedList}  />} />
+			<Route
+				path="/movies/:id"
+				render={props => (
+					<Movie
+						{...props}
+            addToSavedList={addToSavedList}
+            movieList={movieList}
+						getMovieList={getMovieList}
+					/>
+				)}
+			/>
 
-      {/* <Route path="/update-movie/:id">
-        <UpdateMovie />
-      </Route> */}
-      <Route path="/update-movie/:id" render={props => <UpdateMovie {...props} movieList={movieList}  getMovieList={getMovieList} />} />
-    </>
-  );
+			<Route
+				path="/update-movie/:id"
+				render={props => (
+					<UpdateMovie
+						{...props}
+						movieList={movieList}
+						getMovieList={getMovieList}
+					/>
+				)}
+			/>
+		</>
+	);
 };
 
 export default App;
